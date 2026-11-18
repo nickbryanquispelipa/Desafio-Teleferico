@@ -1,0 +1,270 @@
+/* Variables de color coherentes */
+:root {
+  --primary: #0056b3;
+  --primary-dark: #003d82;
+  --secondary: #008080;
+  --bg-body: #f4f7f6;
+  --bg-card: #ffffff;
+  --text-main: #222222;
+  --text-muted: #555555;
+  --border-color: #dcdcdc;
+  --danger: #d9534f;
+  --danger-bg: #fdf2f2;
+  --warning: #f0ad4e;
+  --warning-bg: #fef9e7;
+  --success: #28a745;
+  --success-bg: #eafaf1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Encabezado */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  text-align: center;
+  padding: 1.8rem 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.badge-aviso {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+/* Navegación */
+nav {
+  background-color: #1f2937;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.85rem 1.2rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: var(--primary);
+}
+
+/* Contenedor principal */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tarjetas de módulos */
+.card {
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  padding: 1.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid var(--primary);
+}
+
+.card h2 {
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.descripcion {
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input, select {
+  padding: 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.ayuda {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.grid-viento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-delete {
+  background-color: var(--danger);
+  color: #ffffff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-delete:hover {
+  background-color: #b52b27;
+}
+
+/* Resultados y Alertas */
+.resultado-box {
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border-radius: 6px;
+  display: none;
+  font-weight: 500;
+}
+
+.resultado-box.activo {
+  display: block;
+}
+
+.alerta-ok {
+  background-color: var(--success-bg);
+  border-left: 5px solid var(--success);
+  color: #155724;
+}
+
+.alerta-precaucion {
+  background-color: var(--warning-bg);
+  border-left: 5px solid var(--warning);
+  color: #856404;
+}
+
+.alerta-peligro {
+  background-color: var(--danger-bg);
+  border-left: 5px solid var(--danger);
+  color: #721c24;
+}
+
+.mensaje-error {
+  color: var(--danger);
+  font-weight: 600;
+  margin-top: 0.8rem;
+}
+
+/* Tablas */
+.tabla-contenedor {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: #eef2f7;
+  color: var(--primary-dark);
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #1f2937;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+/* Diseño adaptable (Responsive) */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul li a {
+    border-bottom: 1px solid #374151;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}

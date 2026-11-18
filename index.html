@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIMTELE-WEB | Panel de Prevención y Monitoreo</title>
+  <link rel="stylesheet" href="estilos\estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>SIMTELE-WEB</h1>
+    <p>Panel Interactivo Educativo de Prevención y Monitoreo de Transporte por Cable</p>
+    <span class="badge-aviso">⚠️ Aviso: Todos los datos y umbrales son simulaciones didácticas, no límites operativos reales.</span>
+  </header>
+
+  <nav aria-label="Navegación de módulos">
+    <ul>
+      <li><a href="#modulo-detencion">1. Detención</a></li>
+      <li><a href="#modulo-mantenimiento">2. Mantenimiento</a></li>
+      <li><a href="#modulo-viento">3. Viento</a></li>
+      <li><a href="#modulo-sensores">4. Sensores</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- MÓDULO 1: DETENCIÓN DE EMERGENCIA -->
+    <section id="modulo-detencion" class="card">
+      <h2>1. Detención de Emergencia</h2>
+      <p class="descripcion">Estima la distancia recorrida durante el tiempo de reacción mediante la fórmula didáctica: <strong>d = (v / 3.6) × t</strong>. (Umbral ficticio de alerta: &gt; 50 m).</p>
+      
+      <form id="form-detencion" novalidate>
+        <div class="form-group">
+          <label for="velocidad">Velocidad de cabina (km/h):</label>
+          <input type="number" id="velocidad" step="any" placeholder="Ej: 72" required>
+          <small class="ayuda">Ingrese un valor positivo mayor a 0.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="tiempo">Tiempo de reacción (s):</label>
+          <input type="number" id="tiempo" step="any" placeholder="Ej: 3" required>
+          <small class="ayuda">Tiempo estimado de respuesta en segundos.</small>
+        </div>
+
+        <button type="submit" class="btn-primary">Calcular Distancia</button>
+      </form>
+
+      <div id="resultado-detencion" class="resultado-box" aria-live="polite"></div>
+    </section>
+
+    <!-- MÓDULO 2: MANTENIMIENTO -->
+    <section id="modulo-mantenimiento" class="card">
+      <h2>2. Registro de Mantenimiento</h2>
+      <p class="descripcion">Gestione el historial de componentes y horas de operación.</p>
+
+      <form id="form-mantenimiento" novalidate>
+        <div class="form-group">
+          <label for="componente">Nombre del componente:</label>
+          <input type="text" id="componente" placeholder="Ej: Polea motriz" required>
+          <small class="ayuda">No puede quedar vacío.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="horas">Horas de uso acumuladas:</label>
+          <input type="number" id="horas" min="0" step="any" placeholder="Ej: 1200" required>
+          <small class="ayuda">Ingrese un número igual o mayor a 0.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado del componente:</label>
+          <select id="estado" required>
+            <option value="">-- Seleccione estado --</option>
+            <option value="Normal">Normal</option>
+            <option value="Revisión">Revisión</option>
+            <option value="Urgente">Urgente</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Agregar Registro</button>
+      </form>
+
+      <div id="error-mantenimiento" class="mensaje-error" aria-live="polite"></div>
+
+      <div class="tabla-contenedor">
+        <table id="tabla-mantenimiento">
+          <thead>
+            <tr>
+              <th>Componente</th>
+              <th>Horas de Uso</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-mantenimiento">
+            <!-- Filas generadas dinámicamente por JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MÓDULO 3: VIENTO Y OSCILACIÓN -->
+    <section id="modulo-viento" class="card">
+      <h2>3. Viento y Oscilación</h2>
+      <p class="descripcion">Ingrese cinco mediciones simuladas (km/h) para calcular el promedio, máximo y nivel de alerta didáctico.</p>
+
+      <form id="form-viento" novalidate>
+        <div class="grid-viento">
+          <div class="form-group">
+            <label for="viento1">Medición 1 (km/h):</label>
+            <input type="number" id="viento1" class="input-viento" step="any" placeholder="Ej: 10" required>
+          </div>
+          <div class="form-group">
+            <label for="viento2">Medición 2 (km/h):</label>
+            <input type="number" id="viento2" class="input-viento" step="any" placeholder="Ej: 20" required>
+          </div>
+          <div class="form-group">
+            <label for="viento3">Medición 3 (km/h):</label>
+            <input type="number" id="viento3" class="input-viento" step="any" placeholder="Ej: 30" required>
+          </div>
+          <div class="form-group">
+            <label for="viento4">Medición 4 (km/h):</label>
+            <input type="number" id="viento4" class="input-viento" step="any" placeholder="Ej: 40" required>
+          </div>
+          <div class="form-group">
+            <label for="viento5">Medición 5 (km/h):</label>
+            <input type="number" id="viento5" class="input-viento" step="any" placeholder="Ej: 50" required>
+          </div>
+        </div>
+        <small class="ayuda">Umbrales simulados: &lt; 25 km/h (Estable) | 25–45 km/h (Precaución) | &gt; 45 km/h (Oscilación Alta).</small>
+        <br><br>
+        <button type="submit" class="btn-primary">Analizar Mediciones</button>
+      </form>
+
+      <div id="resultado-viento" class="resultado-box" aria-live="polite"></div>
+    </section>
+
+    <!-- MÓDULO 4: SENSORES -->
+    <section id="modulo-sensores" class="card">
+      <h2>4. Monitoreo de Sensores</h2>
+      <p class="descripcion">Valide y registre lecturas de sensores con formato estricto <code>SEN-000</code>.</p>
+
+      <form id="form-sensores" novalidate>
+        <div class="form-group">
+          <label for="codigo-sensor">Código de Sensor:</label>
+          <input type="text" id="codigo-sensor" placeholder="Ej: SEN-001" required>
+          <small class="ayuda">Formato obligatorio: SEN- seguido de 3 dígitos (Ej: SEN-001).</small>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo-sensor">Tipo de Sensor:</label>
+          <select id="tipo-sensor" required>
+            <option value="">-- Seleccione tipo --</option>
+            <option value="Temperatura">Temperatura (°C)</option>
+            <option value="Tensión de Cable">Tensión de Cable (kN)</option>
+            <option value="Vibración">Vibración (Hz)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="lectura-sensor">Lectura Numérica:</label>
+          <input type="number" id="lectura-sensor" step="any" placeholder="Ej: 42.5" required>
+          <small class="ayuda">Debe ser un valor numérico válido.</small>
+        </div>
+
+        <button type="submit" class="btn-primary">Registrar Sensor</button>
+      </form>
+
+      <div id="error-sensores" class="mensaje-error" aria-live="polite"></div>
+
+      <div class="tabla-contenedor">
+        <table id="tabla-sensores">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Tipo</th>
+              <th>Lectura</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-sensores">
+            <!-- Filas generadas dinámicamente por JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>SIMTELE-WEB &copy; 2026 | Proyecto Educativo de Programación Web I</p>
+    <p>Simulación académica sin datos operativos reales.</p>
+  </footer>
+
+  <script src="java\java.js"></script>
+</body>
+</html>
